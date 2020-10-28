@@ -1,0 +1,6 @@
+TAP version 13
+1..1
+not ok 1 - ./main.go
+  ---
+  message: main.go 30 6  `Something` is unused (deadcode)\nfunc Something() {\n     ^\nmain.go 27 21  Error return value of `http.ListenAndServe` is not checked (errcheck)\n	http.ListenAndServe(" 8080", nil)\n	                   ^\nmain.go 23  File is not `goimports`-ed (goimports)\n
+  ...
