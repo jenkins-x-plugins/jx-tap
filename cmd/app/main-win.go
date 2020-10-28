@@ -12,7 +12,7 @@ import (
 // Run runs the command, if args are not nil they will be set on the command
 func Run(args []string) error {
 	configureTerminalForAnsiEscapes()
-	c, _ := cmd.Main()
+	c := cmd.Main()
 	if len(args) > 0 {
 		args = args[1:]
 		c.SetArgs(args)
