@@ -1,1 +1,2 @@
-TEKTON Linter
+Valid linters:
+* TEKTON

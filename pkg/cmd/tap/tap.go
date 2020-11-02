@@ -120,6 +120,9 @@ func (o *Options) processTapFile(path string) error {
 	var tests []Test
 	for i := range results.Tests {
 		t := &results.Tests[i]
+		if t.Passed {
+			continue
+		}
 		state := "passed"
 		style := "info"
 		if t.Failed {

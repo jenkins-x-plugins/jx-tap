@@ -20,6 +20,7 @@ type Error struct {
 var (
 	fileLineColRegex = regexp.MustCompile(`([^<>:;,?\"*|/]+)\s+(\d+)\s+(\d+)\s+(.*)`)
 	fileLineRegex    = regexp.MustCompile(`([^<>:;,?\"*|/]+)\s+(\d+)\s+(.*)`)
+	lineColRegex     = regexp.MustCompile(`\s*(\d+)\s+(\d+)\s+(.*)`)
 )
 
 // HeadingHTML returns the answer as html
@@ -62,6 +63,16 @@ func ParseErrors(text, defaultFile string) ([]*Error, error) {
 					Line:    matches[2],
 					Heading: matches[3],
 				}
+			} else {
+				matches := lineColRegex.FindStringSubmatch(line)
+				if len(matches) > 0 {
+					e = &Error{
+						File:    defaultFile,
+						Line:    matches[2],
+						Col:     matches[3],
+						Heading: matches[4],
+					}
+				}
 			}
 		}
 		if e == nil {
@@ -69,18 +80,24 @@ func ParseErrors(text, defaultFile string) ([]*Error, error) {
 			buf.WriteString("\n")
 			continue
 		}
+		if strings.TrimSpace(e.File) == "" {
+			e.File = defaultFile
+		}
 		// avoid file name of "myscript.sh line 5" ending up as "myscrip.sh line"
 		e.File = strings.TrimSuffix(e.File, " line")
 
 		if buf.Len() > 0 {
-			if lastError == nil {
-				lastError = &Error{File: defaultFile}
-				answer = append(answer, lastError)
-			}
-
-			// lets keep the old buffer
-			lastError.Message = buf.String()
+			text := buf.String()
 			buf.Reset()
+
+			if strings.TrimSpace(text) != defaultFile {
+				if lastError == nil {
+					lastError = &Error{File: defaultFile}
+					answer = append(answer, lastError)
+				}
+				// lets keep the old buffer
+				lastError.Message = text
+			}
 		}
 		answer = append(answer, e)
 		lastError = e

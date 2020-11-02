@@ -1,1 +1,2 @@
-BASH_EXEC Linter
+Valid linters:
+* BASH_EXEC
