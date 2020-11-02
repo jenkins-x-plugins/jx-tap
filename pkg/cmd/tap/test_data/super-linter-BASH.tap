@@ -1,0 +1,7 @@
+TAP version 13
+1..2
+not ok 1 - ./curlloop.sh
+  ---
+  message: \nIn ./curlloop.sh line 8 \n    curl $APP \n         ^--^ SC2086  Double quote to prevent globbing and word splitting.\n\nDid you mean  \n    curl "$APP" \n\nFor more information \n  https //www.shellcheck.net/wiki/SC2086 -- Double quote to prevent globbing ...\n
+  ...
+ok 2 - ./watch.sh

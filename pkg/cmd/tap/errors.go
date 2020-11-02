@@ -69,6 +69,8 @@ func ParseErrors(text string) ([]*Error, error) {
 			buf.WriteString("\n")
 			continue
 		}
+		// avoid file name of "myscript.sh line 5" ending up as "myscrip.sh line"
+		e.File = strings.TrimSuffix(e.File, " line")
 
 		if buf.Len() > 0 {
 			if lastError == nil {
@@ -82,6 +84,9 @@ func ParseErrors(text string) ([]*Error, error) {
 		}
 		answer = append(answer, e)
 		lastError = e
+	}
+	if buf.Len() > 0 && lastError != nil {
+		lastError.Message = buf.String()
 	}
 	return answer, nil
 }

@@ -15,12 +15,9 @@ import (
 	"github.com/jenkins-x-plugins/jx-tap/pkg/assets"
 	"github.com/jenkins-x-plugins/jx-tap/pkg/common"
 	"github.com/jenkins-x/go-scm/scm"
-	"github.com/jenkins-x/jx-api/v3/pkg/client/clientset/versioned"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/cobras/helper"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/cobras/templates"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/files"
-	"github.com/jenkins-x/jx-helpers/v3/pkg/kube"
-	"github.com/jenkins-x/jx-helpers/v3/pkg/kube/jxclient"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/options"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/scmhelpers"
 	"github.com/jenkins-x/jx-helpers/v3/pkg/stringhelpers"
@@ -29,7 +26,6 @@ import (
 	"github.com/mpontillo/tap13"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	"k8s.io/client-go/kubernetes"
 )
 
 var (
@@ -54,9 +50,8 @@ type Options struct {
 	Namespace               string
 	GenerateHTML            bool
 	WriteLogToBucketTimeout time.Duration
-	KubeClient              kubernetes.Interface
-	JXClient                versioned.Interface
 	Template                *template.Template
+	PassedLanguages         []string
 }
 
 // NewCmdTap creates a command object for the command
@@ -83,28 +78,9 @@ func NewCmdTap() (*cobra.Command, *Options) {
 	return cmd, options
 }
 
-// Validate verifies things are setup correctly
-func (o *Options) Validate() error {
-	var err error
-	o.KubeClient, o.Namespace, err = kube.LazyCreateKubeClientAndNamespace(o.KubeClient, o.Namespace)
-	if err != nil {
-		return errors.Wrapf(err, "failed to create kube client")
-	}
-	o.JXClient, err = jxclient.LazyCreateJXClient(o.JXClient)
-	if err != nil {
-		return errors.Wrapf(err, "failed to create the jx client")
-	}
-	return nil
-}
-
 func (o *Options) Run() error {
-	err := o.Validate()
-	if err != nil {
-		return errors.Wrapf(err, "failed to validate options")
-	}
-
-	err = filepath.Walk(o.Dir, func(path string, f os.FileInfo, err error) error {
-		if f.IsDir() {
+	err := filepath.Walk(o.Dir, func(path string, f os.FileInfo, err error) error {
+		if f == nil || f.IsDir() {
 			return nil
 		}
 		name := f.Name()
@@ -116,7 +92,13 @@ func (o *Options) Run() error {
 	if err != nil {
 		return errors.Wrapf(err, "failed to process tap files in dir %s", o.Dir)
 	}
-	return nil
+
+	if o.GenerateHTML || len(o.PassedLanguages) == 0 {
+		return nil
+	}
+
+	comment := "Valid linters:\n* " + strings.Join(o.PassedLanguages, "\n* ")
+	return o.commentOnPullRequest(comment)
 }
 
 func (o *Options) processTapFile(path string) error {
@@ -189,14 +171,22 @@ func (o *Options) processTapFileResults(path string, tests []Test) error {
 		return errors.Errorf("no Pull Request could be found for %d in repository %s", o.Number, o.Repository)
 	}
 
-	commentMarkdown, err := o.generatePullRequestComment(pr, path, tests)
+	commentMarkdown, lang, err := o.generatePullRequestComment(pr, path, tests)
 	if err != nil {
 		return errors.Wrapf(err, "failed to generate pull request comment")
 	}
 
+	if commentMarkdown == "" {
+		o.PassedLanguages = append(o.PassedLanguages, lang)
+		return nil
+	}
+	return o.commentOnPullRequest(commentMarkdown)
+}
+
+func (o *Options) commentOnPullRequest(commentMarkdown string) error {
 	ctx := context.Background()
 	comment := &scm.CommentInput{Body: commentMarkdown}
-	_, _, err = o.ScmClient.PullRequests.CreateComment(ctx, o.FullRepositoryName, o.Number, comment)
+	_, _, err := o.ScmClient.PullRequests.CreateComment(ctx, o.FullRepositoryName, o.Number, comment)
 	prName := "#" + strconv.Itoa(o.Number)
 	if err != nil {
 		return errors.Wrapf(err, "failed to comment on pull request %s on repository %s", prName, o.FullRepositoryName)
@@ -243,7 +233,7 @@ func (o *Options) generateTapResultsHTML(path string, tests []Test) error {
 	return nil
 }
 
-func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, tests []Test) (string, error) {
+func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, tests []Test) (string, string, error) {
 	buf := strings.Builder{}
 
 	sourcePrefix := pr.Base.Repo.Link
@@ -259,11 +249,25 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 			lang = lang[idx+1:]
 		}
 	}
-	if len(tests) == 0 {
-		return "", nil
+
+	// lets check if all the tests are green...
+	allPassed := true
+	for _, t := range tests {
+		if t.Failed {
+			allPassed = false
+			break
+		}
+		if len(t.Errors) > 0 {
+			allPassed = false
+			break
+		}
 	}
+	if allPassed || len(tests) == 0 {
+		return "", lang, nil
+	}
+
 	if lang != "" {
-		buf.WriteString("### " + lang + " Linter\n")
+		buf.WriteString(lang + " Linter\n")
 	}
 	for _, t := range tests {
 		for _, e := range t.Errors {
@@ -284,13 +288,23 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 					message += "\n"
 				}
 				buf.WriteString("\n")
-				buf.WriteString("```" + strings.ToLower(lang) + "\n")
+				buf.WriteString("```" + toMarkdownLang(lang) + "\n")
 				buf.WriteString(message)
 				buf.WriteString("```\n")
 			}
 		}
 	}
-	return buf.String(), nil
+	return buf.String(), lang, nil
+}
+
+func toMarkdownLang(lang string) string {
+	lower := strings.ToLower(lang)
+	switch lower {
+	case "kubernetes_kubeval":
+		return "bash"
+	default:
+		return lower
+	}
 }
 
 type Test struct {

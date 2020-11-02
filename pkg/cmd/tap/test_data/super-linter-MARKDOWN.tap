@@ -1,0 +1,7 @@
+TAP version 13
+1..2
+ok 1 - ./charts/bdd-gh-1602679032/README.md
+not ok 2 - ./README.md
+  ---
+  message: ./README.md 1 14 MD009/no-trailing-spaces Trailing spaces [Expected  0 or 2; Actual  11]\n
+  ...

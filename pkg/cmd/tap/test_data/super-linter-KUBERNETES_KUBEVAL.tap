@@ -1,0 +1,42 @@
+TAP version 13
+1..10
+not ok 1 - ./charts/bdd-gh-1602679032/values.yaml
+  ---
+  message: ERR  - ./charts/bdd-gh-1602679032/values.yaml  Missing 'metadata' key\n
+  ...
+not ok 2 - ./charts/bdd-gh-1602679032/Chart.yaml
+  ---
+  message: ERR  - ./charts/bdd-gh-1602679032/Chart.yaml  Missing 'metadata' key\n
+  ...
+not ok 3 - ./charts/bdd-gh-1602679032/templates/ksvc.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/ksvc.yaml  error converting YAML to JSON  yaml  did not find expected node content\n
+  ...
+not ok 4 - ./charts/bdd-gh-1602679032/templates/ingress.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/ingress.yaml  error converting YAML to JSON  yaml  did not find expected node content\n
+  ...
+not ok 5 - ./charts/bdd-gh-1602679032/templates/service.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/service.yaml  error converting YAML to JSON  yaml  did not find expected node content\n
+  ...
+not ok 6 - ./charts/bdd-gh-1602679032/templates/hpa.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/hpa.yaml  error converting YAML to JSON  yaml  did not find expected node content\n
+  ...
+not ok 7 - ./charts/bdd-gh-1602679032/templates/canary.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/canary.yaml  error converting YAML to JSON  yaml  did not find expected node content\nERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/canary.yaml  error converting YAML to JSON  yaml  line 17  could not find expected ' '\n
+  ...
+not ok 8 - ./charts/bdd-gh-1602679032/templates/deployment.yaml
+  ---
+  message: ERR  - Failed to decode YAML from ./charts/bdd-gh-1602679032/templates/deployment.yaml  error converting YAML to JSON  yaml  did not find expected node content\n
+  ...
+not ok 9 - ./.lighthouse/jenkins-x/triggers.yaml
+  ---
+  message: ERR  - ./.lighthouse/jenkins-x/triggers.yaml  Missing 'metadata' key\n
+  ...
+not ok 10 - ./.lighthouse/lint/triggers.yaml
+  ---
+  message: ERR  - ./.lighthouse/lint/triggers.yaml  Missing 'metadata' key\n
+  ...

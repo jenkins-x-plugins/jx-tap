@@ -1,0 +1,34 @@
+TAP version 13
+1..14
+ok 1 - ./charts/bdd-gh-1602679032/values.yaml
+ok 2 - ./charts/bdd-gh-1602679032/Chart.yaml
+not ok 3 - ./charts/bdd-gh-1602679032/templates/ksvc.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/ksvc.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 29      warning  too many spaces inside braces  (braces)\n  28 81     warning  line too long (82 > 80 characters)  (line-length)\n
+  ...
+not ok 4 - ./charts/bdd-gh-1602679032/templates/ingress.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/ingress.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 79      warning  too many spaces inside braces  (braces)\n  1 81      warning  line too long (81 > 80 characters)  (line-length)\n  2 15      warning  too many spaces inside braces  (braces)\n  2 57      warning  too many spaces inside braces  (braces)\n  27 81     warning  line too long (134 > 80 characters)  (line-length)\n  32 81     warning  line too long (130 > 80 characters)  (line-length)\n  36 81     warning  line too long (85 > 80 characters)  (line-length)\n  38 81     warning  line too long (85 > 80 characters)  (line-length)\n
+  ...
+not ok 5 - ./charts/bdd-gh-1602679032/templates/service.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/service.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 55      warning  too many spaces inside braces  (braces)\n  2 9       warning  too many spaces inside braces  (braces)\n
+  ...
+not ok 6 - ./charts/bdd-gh-1602679032/templates/hpa.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/hpa.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 27      warning  too many spaces inside braces  (braces)\n  5 11      warning  too many spaces inside braces  (braces)\n  5 33      warning  too many spaces inside braces  (braces)\n  7 14      warning  too many spaces inside braces  (braces)\n  7 48      warning  too many spaces inside braces  (braces)\n  13 13     warning  too many spaces inside braces  (braces)\n  13 35     warning  too many spaces inside braces  (braces)\n  14 18     warning  too many spaces inside braces  (braces)\n  14 42     warning  too many spaces inside braces  (braces)\n  15 18     warning  too many spaces inside braces  (braces)\n  15 42     warning  too many spaces inside braces  (braces)\n  17 3      warning  wrong indentation  expected 4 but found 2  (indentation)\n  20 35     warning  too many spaces inside braces  (braces)\n  20 75     warning  too many spaces inside braces  (braces)\n  24 35     warning  too many spaces inside braces  (braces)\n  24 78     warning  too many spaces inside braces  (braces)\n
+  ...
+not ok 7 - ./charts/bdd-gh-1602679032/templates/canary.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/canary.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 30      warning  too many spaces inside braces  (braces)\n  5 11      warning  too many spaces inside braces  (braces)\n  5 33      warning  too many spaces inside braces  (braces)\n  7 14      warning  too many spaces inside braces  (braces)\n  7 48      warning  too many spaces inside braces  (braces)\n  14 13     warning  too many spaces inside braces  (braces)\n  14 35     warning  too many spaces inside braces  (braces)\n  15 30     warning  too many spaces inside braces  (braces)\n  28 81     warning  line too long (169 > 80 characters)  (line-length)\n  58 81     warning  line too long (169 > 80 characters)  (line-length)\n
+  ...
+not ok 8 - ./charts/bdd-gh-1602679032/templates/deployment.yaml
+  ---
+  message: ./charts/bdd-gh-1602679032/templates/deployment.yaml\n  1 1       warning  missing document start "---"  (document-start)\n  1 3       error    syntax error  expected the node content, but found '-' (syntax)\n  1 29      warning  too many spaces inside braces  (braces)\n  2 9       warning  too many spaces inside braces  (braces)\n  6 11      warning  too many spaces inside braces  (braces)\n  6 33      warning  too many spaces inside braces  (braces)\n  8 14      warning  too many spaces inside braces  (braces)\n  8 48      warning  too many spaces inside braces  (braces)\n  13 14     warning  too many spaces inside braces  (braces)\n  13 36     warning  too many spaces inside braces  (braces)\n
+  ...
+ok 9 - ./.lighthouse/jenkins-x/release.yaml
+ok 10 - ./.lighthouse/jenkins-x/triggers.yaml
+ok 11 - ./.lighthouse/jenkins-x/pullrequest.yaml
+ok 12 - ./.lighthouse/lint/lint.yaml
+ok 13 - ./.lighthouse/lint/triggers.yaml
+ok 14 - ./preview/helmfile.yaml
