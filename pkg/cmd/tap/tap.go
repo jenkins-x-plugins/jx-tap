@@ -136,7 +136,7 @@ func (o *Options) processTapFile(path string) error {
 		t.Description = strings.TrimPrefix(t.Description, "-")
 		t.Description = strings.TrimSpace(t.Description)
 
-		errorDetails, err := ParseErrors(message)
+		errorDetails, err := ParseErrors(message, t.Description)
 		if err != nil {
 			return errors.Wrapf(err, "failed to parse errors for file %s, message %s", path, message)
 		}
@@ -270,6 +270,9 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 		buf.WriteString(lang + " Linter\n")
 	}
 	for _, t := range tests {
+		if t.Passed {
+			continue
+		}
 		for _, e := range t.Errors {
 			fileLink := "* "
 			file := e.File
@@ -278,7 +281,7 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 				if e.Line != "" {
 					lineSuffix = "#L" + e.Line
 				}
-				fileLink += "[" + file + "](" + stringhelpers.UrlJoin(sourcePrefix, file) + lineSuffix + ") : "
+				fileLink += "[" + file + "](" + sourceLink(sourcePrefix, file) + lineSuffix + ") : "
 			}
 			buf.WriteString(fileLink + e.Heading + "\n")
 
@@ -288,13 +291,22 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 					message += "\n"
 				}
 				buf.WriteString("\n")
-				buf.WriteString("```" + toMarkdownLang(lang) + "\n")
-				buf.WriteString(message)
-				buf.WriteString("```\n")
+				if strings.TrimSpace(message) != "" {
+					buf.WriteString("```" + toMarkdownLang(lang) + "\n")
+					buf.WriteString(message)
+					buf.WriteString("```\n")
+				}
 			}
 		}
 	}
 	return buf.String(), lang, nil
+}
+
+func sourceLink(sourcePrefix string, file string) string {
+	if sourcePrefix == "" {
+		return file
+	}
+	return stringhelpers.UrlJoin(sourcePrefix, file)
 }
 
 func toMarkdownLang(lang string) string {

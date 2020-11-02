@@ -13,7 +13,7 @@ var (
 )
 
 func TestParseErrors(t *testing.T) {
-	results, err := tap.ParseErrors(sample)
+	results, err := tap.ParseErrors(sample, "")
 	require.NoError(t, err, "failed to parse %s", sample)
 	require.Len(t, results, 3, "size of results")
 

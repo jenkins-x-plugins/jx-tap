@@ -38,7 +38,7 @@ func (e *Error) HeadingHTML() string {
 }
 
 // ParseErrors parsers the errors from a message
-func ParseErrors(text string) ([]*Error, error) {
+func ParseErrors(text, defaultFile string) ([]*Error, error) {
 	var answer []*Error
 	lines := strings.Split(text, "\n")
 	buf := strings.Builder{}
@@ -74,7 +74,7 @@ func ParseErrors(text string) ([]*Error, error) {
 
 		if buf.Len() > 0 {
 			if lastError == nil {
-				lastError = &Error{}
+				lastError = &Error{File: defaultFile}
 				answer = append(answer, lastError)
 			}
 
@@ -84,6 +84,10 @@ func ParseErrors(text string) ([]*Error, error) {
 		}
 		answer = append(answer, e)
 		lastError = e
+	}
+	if lastError == nil {
+		lastError = &Error{File: defaultFile}
+		answer = append(answer, lastError)
 	}
 	if buf.Len() > 0 && lastError != nil {
 		lastError.Message = buf.String()

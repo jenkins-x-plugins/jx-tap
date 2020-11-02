@@ -1,5 +1,5 @@
 BASH Linter
-* [curlloop.sh](/curlloop.sh#L8) : 
+* [curlloop.sh](curlloop.sh#L8) : 
 
 ```bash
     curl $APP 

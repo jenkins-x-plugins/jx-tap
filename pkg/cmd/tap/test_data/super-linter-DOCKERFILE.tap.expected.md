@@ -1,2 +1,1 @@
-Valid linters:
-* DOCKERFILE
+DOCKERFILE Linter

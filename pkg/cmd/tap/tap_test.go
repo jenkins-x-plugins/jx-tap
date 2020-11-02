@@ -19,7 +19,7 @@ import (
 
 var (
 	// generateTestOutput enable to regenerate the expected output
-	generateTestOutput = true
+	generateTestOutput = false
 )
 
 func TestTapPullRequestComments(t *testing.T) {
