@@ -39,12 +39,18 @@ func TestTapPullRequestComments(t *testing.T) {
 	fs, err := ioutil.ReadDir(sourceDir)
 	require.NoError(t, err, "failed to iterate over source %s", sourceDir)
 
+	filterTestName := os.Getenv("TEST_NAME")
+
 	for _, f := range fs {
 		if f == nil || f.IsDir() {
 			continue
 		}
 		name := f.Name()
 		if !strings.HasSuffix(name, ".tap") {
+			continue
+		}
+		if filterTestName != "" && filterTestName != name {
+			t.Logf("ignoring test %s\n", name)
 			continue
 		}
 

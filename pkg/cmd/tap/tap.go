@@ -109,7 +109,13 @@ func (o *Options) processTapFile(path string) error {
 	if len(data) == 0 {
 		return nil
 	}
-	lines := strings.Split(string(data), "\n")
+	text := strings.TrimSpace(string(data))
+
+	// lets add a TAP version if its missing
+	if !strings.HasPrefix(text, "TAP") {
+		text = "TAP version 13\n" + text
+	}
+	lines := strings.Split(text, "\n")
 	results := tap13.Parse(lines)
 	if results == nil {
 		return errors.Errorf("nil returned from parsing %d lines of text from file %s", len(lines), path)
@@ -246,7 +252,9 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 	}
 	lang := ""
 	if strings.HasSuffix(path, ".tap") {
-		lang = strings.TrimSuffix(path, ".tap")
+		_, fileName := filepath.Split(path)
+		fileName = strings.TrimPrefix(fileName, string(os.PathSeparator))
+		lang = strings.TrimSuffix(fileName, ".tap")
 		idx := strings.LastIndex(lang, "-")
 		if idx >= 0 {
 			lang = lang[idx+1:]
@@ -284,7 +292,12 @@ func (o *Options) generatePullRequestComment(pr *scm.PullRequest, path string, t
 				if e.Line != "" {
 					lineSuffix = "#L" + e.Line
 				}
-				fileLink += "[" + file + "](" + sourceLink(sourcePrefix, file) + lineSuffix + ") : "
+				linkTarget := sourceLink(sourcePrefix, file) + lineSuffix
+				fileLink += "[" + file + "](" + linkTarget + ") : "
+
+				if strings.Contains(file, "(") || strings.Contains(linkTarget, "(") {
+					fileLink = fmt.Sprintf(`* <a href="%s">%s</> : `, file, linkTarget)
+				}
 			}
 			buf.WriteString(fileLink + e.Heading + "\n")
 

@@ -1,0 +1,414 @@
+1..413
+ok 1 - cluster/namespaces/jx-observability.yaml (Namespace)
+ok 2 - cluster/namespaces/jx-staging.yaml (Namespace)
+ok 3 - cluster/namespaces/jx.yaml (Namespace)
+ok 4 - cluster/namespaces/myapps.yaml (Namespace)
+ok 5 - cluster/namespaces/myjenkinsf.yaml (Namespace)
+ok 6 - cluster/namespaces/nginx.yaml (Namespace)
+ok 7 - cluster/namespaces/secret-infra.yaml (Namespace)
+ok 8 - jx-build-controller/templates/clusterrole.yaml (ClusterRole)
+ok 9 - jx-build-controller/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 10 - jx-charter/templates/clusterrole.yaml (ClusterRole)
+ok 11 - jx-charter/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 12 - jx-pipelines-visualizer/templates/rbac.yaml (ClusterRole)
+ok 13 - jx-pipelines-visualizer/templates/rbac.yaml (ClusterRoleBinding)
+ok 14 - jx-preview/templates/gc-jobs-clusterrole.yaml (ClusterRole)
+ok 15 - jx-preview/templates/gc-jobs-clusterrolebinding.yaml (ClusterRoleBinding)
+ok 16 - jxboot-helmfile-resources/templates/jenkins-x-aggregate-view.yaml (ClusterRole)
+ok 17 - jxboot-helmfile-resources/templates/build-bot-clusterrole.yaml (ClusterRole)
+ok 18 - jxboot-helmfile-resources/templates/build-bot-clusterrolebinding.yaml (ClusterRoleBinding)
+ok 19 - grafana/templates/clusterrole.yaml (ClusterRole)
+ok 20 - grafana/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 21 - prometheus/charts/kube-state-metrics/templates/role.yaml (ClusterRole)
+ok 22 - prometheus/charts/kube-state-metrics/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 23 - prometheus/templates/alertmanager/clusterrole.yaml (ClusterRole)
+ok 24 - prometheus/templates/alertmanager/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 25 - prometheus/templates/server/clusterrole.yaml (ClusterRole)
+ok 26 - prometheus/templates/server/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 27 - promtail/templates/clusterrole.yaml (ClusterRole)
+ok 28 - promtail/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 29 - jenkins-resources/templates/tekton-clusterrole.yaml (ClusterRole)
+ok 30 - jenkins-resources/templates/tekton-clusterrolebinding.yaml (ClusterRoleBinding)
+ok 31 - ingress-nginx/templates/clusterrole.yaml (ClusterRole)
+ok 32 - ingress-nginx/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 33 - ingress-nginx/templates/admission-webhooks/job-patch/clusterrole.yaml (ClusterRole)
+ok 34 - ingress-nginx/templates/admission-webhooks/job-patch/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 35 - kubernetes-external-secrets/templates/rbac.yaml (ClusterRoleBinding)
+ok 36 - kubernetes-external-secrets/templates/rbac.yaml (ClusterRole)
+ok 37 - kubernetes-external-secrets/templates/rbac.yaml (ClusterRoleBinding)
+ok 38 - pusher-wave/templates/clusterrole.yaml (ClusterRole)
+ok 39 - pusher-wave/templates/clusterrolebinding.yaml (ClusterRoleBinding)
+ok 40 - tekton-pipeline/templates/tekton-aggregate-edit-clusterrole.yaml (ClusterRole)
+ok 41 - tekton-pipeline/templates/tekton-aggregate-view-clusterrole.yaml (ClusterRole)
+ok 42 - tekton-pipeline/templates/tekton-pipelines-controller-cluster-access-clusterrole.yaml (ClusterRole)
+ok 43 - tekton-pipeline/templates/tekton-pipelines-controller-cluster-access-crb.yaml (ClusterRoleBinding)
+ok 44 - tekton-pipeline/templates/tekton-pipelines-controller-tenant-access-clusterrole.yaml (ClusterRole)
+ok 45 - tekton-pipeline/templates/tekton-pipelines-controller-tenant-access-crb.yaml (ClusterRoleBinding)
+ok 46 - tekton-pipeline/templates/tekton-pipelines-ns.yaml (Namespace)
+ok 47 - tekton-pipeline/templates/tekton-pipelines-webhook-cluster-access-clusterrole.yaml (ClusterRole)
+ok 48 - tekton-pipeline/templates/tekton-pipelines-webhook-cluster-access-crb.yaml (ClusterRoleBinding)
+ok 49 - jenkins-x-crds/templates/environments-crd.yaml (CustomResourceDefinition) # SKIP
+ok 50 - jenkins-x-crds/templates/pipelineactivities-crd.yaml (CustomResourceDefinition) # SKIP
+ok 51 - jenkins-x-crds/templates/releases-crd.yaml (CustomResourceDefinition) # SKIP
+ok 52 - jenkins-x-crds/templates/sourcerepositories-crd.yaml (CustomResourceDefinition) # SKIP
+ok 53 - jx-charter/templates/chart.jenkins.io.yaml (CustomResourceDefinition) # SKIP
+ok 54 - jx-preview/templates/previews.preview.jenkins.io.yaml (CustomResourceDefinition) # SKIP
+ok 55 - lighthouse/templates/lighthousejobs-crd.yaml (CustomResourceDefinition) # SKIP
+ok 56 - kubernetes-external-secrets/crds/kubernetes-client.io_externalsecrets_crd.yaml--- (CustomResourceDefinition) # SKIP
+ok 57 - tekton-pipeline/templates/clustertasks.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 58 - tekton-pipeline/templates/conditions.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 59 - tekton-pipeline/templates/pipelineresources.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 60 - tekton-pipeline/templates/pipelineruns.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 61 - tekton-pipeline/templates/pipelines.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 62 - tekton-pipeline/templates/runs.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 63 - tekton-pipeline/templates/taskruns.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+ok 64 - tekton-pipeline/templates/tasks.tekton.dev-crd.yaml (CustomResourceDefinition) # SKIP
+not ok 65 - badchart/templates/deploy.yaml (Deployment) - selector: selector is required
+not ok 66 - badchart/templates/deploy.yaml (Deployment) - template: template is required
+not ok 67 - namespaces/jx/chart-crds/badchart.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 68 - namespaces/jx/chart-crds/badchart.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: null
+not ok 69 - namespaces/jx/chart-crds/badchart.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: null
+not ok 70 - namespaces/jx/chart-crds/chartmuseum.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 71 - namespaces/jx/chart-crds/chartmuseum.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 72 - namespaces/jx/chart-crds/chartmuseum.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 73 - namespaces/jx/chart-crds/jx-build-controller.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 74 - namespaces/jx/chart-crds/jx-build-controller.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 75 - namespaces/jx/chart-crds/jx-build-controller.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 76 - namespaces/jx/chart-crds/jx-charter.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 77 - namespaces/jx/chart-crds/jx-charter.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 78 - namespaces/jx/chart-crds/jx-charter.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 79 - namespaces/jx/chart-crds/jx-pipelines-visualizer.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 80 - namespaces/jx/chart-crds/jx-pipelines-visualizer.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 81 - namespaces/jx/chart-crds/jx-pipelines-visualizer.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 82 - namespaces/jx/chart-crds/jx-preview.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 83 - namespaces/jx/chart-crds/jx-preview.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 84 - namespaces/jx/chart-crds/jx-preview.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 85 - namespaces/jx/chart-crds/jxboot-helmfile-resources.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 86 - namespaces/jx/chart-crds/jxboot-helmfile-resources.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 87 - namespaces/jx/chart-crds/jxboot-helmfile-resources.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 88 - namespaces/jx/chart-crds/lighthouse.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 89 - namespaces/jx/chart-crds/lighthouse.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 90 - namespaces/jx/chart-crds/lighthouse.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 91 - namespaces/jx/chart-crds/nexus.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 92 - namespaces/jx/chart-crds/nexus.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 93 - namespaces/jx/chart-crds/nexus.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 94 - chartmuseum/templates/deployment.yaml (Deployment)
+ok 95 - chartmuseum/templates/pvc.yaml (PersistentVolumeClaim)
+ok 96 - chartmuseum/templates/secret.yaml (ExternalSecret) # SKIP
+ok 97 - chartmuseum/templates/service.yaml (Service)
+ok 98 - jx-build-controller/templates/serviceaccount.yaml (ServiceAccount)
+ok 99 - jx-build-controller/templates/deployment.yaml (Deployment)
+ok 100 - jx-build-controller/templates/rolebinding.yaml (RoleBinding)
+ok 101 - jx-build-controller/templates/role.yaml (Role)
+ok 102 - jx-charter/templates/deployment.yaml (Deployment)
+ok 103 - jx-charter/templates/serviceaccount.yaml (ServiceAccount)
+ok 104 - jx-pipelines-visualizer/templates/deployment.yaml (Deployment)
+ok 105 - jx-pipelines-visualizer/templates/ingress.yaml (Ingress)
+ok 106 - jx-pipelines-visualizer/templates/rbac.yaml (ServiceAccount)
+ok 107 - jx-pipelines-visualizer/templates/service.yaml (Service)
+not ok 108 - jx-preview/templates/release.yaml (Release) - metadata: Additional property metadata is not allowed
+ok 109 - jx-preview/templates/gc-jobs-cj.yaml (CronJob)
+ok 110 - jx-preview/templates/gc-jobs-rb.yaml (RoleBinding)
+ok 111 - jx-preview/templates/gc-jobs-role.yaml (Role)
+ok 112 - jx-preview/templates/gc-jobs-sa.yaml (ServiceAccount)
+ok 113 - jxboot-helmfile-resources/templates/700-chartmuseum-ing.yaml (Ingress)
+ok 114 - jxboot-helmfile-resources/templates/committer-role.yaml (Role)
+not ok 115 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - metadata: Additional property metadata is not allowed
+not ok 116 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - useGitOps: Additional property useGitOps is not allowed
+not ok 117 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - helmTemplate: Additional property helmTemplate is not allowed
+not ok 118 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - buildPackRef: Additional property buildPackRef is not allowed
+not ok 119 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - importMode: Additional property importMode is not allowed
+not ok 120 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - versionStreamUrl: Additional property versionStreamUrl is not allowed
+not ok 121 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - buildPackUrl: Additional property buildPackUrl is not allowed
+not ok 122 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - prowEngine: Additional property prowEngine is not allowed
+not ok 123 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - versionStreamRef: Additional property versionStreamRef is not allowed
+not ok 124 - jxboot-helmfile-resources/templates/repositories.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+ok 125 - jxboot-helmfile-resources/templates/jx-gcactivities-rb.yaml (RoleBinding)
+ok 126 - jxboot-helmfile-resources/templates/jx-gcactivities-role.yaml (Role)
+ok 127 - jxboot-helmfile-resources/templates/jx-gcpods-rb.yaml (RoleBinding)
+ok 128 - jxboot-helmfile-resources/templates/jx-gcpods-role.yaml (Role)
+ok 129 - jxboot-helmfile-resources/templates/700-hook-ing.yaml (Ingress)
+ok 130 - jxboot-helmfile-resources/templates/ingress-config-configmap.yaml (ConfigMap)
+ok 131 - jxboot-helmfile-resources/templates/maven-settings-secret.yaml (ExternalSecret) # SKIP
+ok 132 - jxboot-helmfile-resources/templates/jenkins-x-docker-registry.yaml (ConfigMap)
+ok 133 - jxboot-helmfile-resources/templates/jenkins-x-extensions-config.yaml (ConfigMap)
+ok 134 - jxboot-helmfile-resources/templates/jx-basic-auth-htpasswd-secret.yaml (ExternalSecret) # SKIP
+ok 135 - jxboot-helmfile-resources/templates/jx-basic-auth-user-password-secret.yaml (ExternalSecret) # SKIP
+ok 136 - jxboot-helmfile-resources/templates/upgrade-cj.yaml (CronJob)
+ok 137 - jxboot-helmfile-resources/templates/jx-gcactivities-cronjob.yaml (CronJob)
+ok 138 - jxboot-helmfile-resources/templates/jx-gcactivities-sa.yaml (ServiceAccount)
+ok 139 - jxboot-helmfile-resources/templates/jx-gcpods-cronjob.yaml (CronJob)
+ok 140 - jxboot-helmfile-resources/templates/jx-gcpods-sa.yaml (ServiceAccount)
+ok 141 - jxboot-helmfile-resources/templates/jx-pipeline-activity-reporter-role.yaml (Role)
+ok 142 - jxboot-helmfile-resources/templates/jx-view-role.yaml (Role)
+ok 143 - jxboot-helmfile-resources/templates/kapp-config.yaml (ConfigMap)
+ok 144 - jxboot-helmfile-resources/templates/700-nexus-ing.yaml (Ingress)
+ok 145 - jxboot-helmfile-resources/templates/owner-role.yaml (Role)
+not ok 146 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - metadata: Additional property metadata is not allowed
+not ok 147 - jxboot-helmfile-resources/templates/repositories.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 148 - jxboot-helmfile-resources/templates/environments.yaml (Environment) - metadata: Additional property metadata is not allowed
+ok 149 - jxboot-helmfile-resources/templates/build-bot-rolebinding.yaml (RoleBinding)
+ok 150 - jxboot-helmfile-resources/templates/build-bot-role.yaml (Role)
+ok 151 - jxboot-helmfile-resources/templates/build-bot-serviceaccount.yaml (ServiceAccount)
+ok 152 - jxboot-helmfile-resources/templates/tekton-container-registry-auth-secret.yaml (ExternalSecret) # SKIP
+ok 153 - jxboot-helmfile-resources/templates/tekton-git-secret.yaml (ExternalSecret) # SKIP
+ok 154 - jxboot-helmfile-resources/templates/viewer-role.yaml (Role)
+ok 155 - lighthouse/templates/webhooks-service.yaml (Service)
+not ok 156 - lighthouse/templates/release.yaml (Release) - metadata: Additional property metadata is not allowed
+ok 157 - lighthouse/templates/foghorn-deployment.yaml (Deployment)
+ok 158 - lighthouse/templates/foghorn-rb.yaml (RoleBinding)
+ok 159 - lighthouse/templates/foghorn-role.yaml (Role)
+ok 160 - lighthouse/templates/foghorn-sa.yaml (ServiceAccount)
+ok 161 - lighthouse/templates/gc-jobs-cj.yaml (CronJob)
+ok 162 - lighthouse/templates/gc-jobs-rb.yaml (RoleBinding)
+ok 163 - lighthouse/templates/gc-jobs-role.yaml (Role)
+ok 164 - lighthouse/templates/gc-jobs-sa.yaml (ServiceAccount)
+ok 165 - lighthouse/templates/hmacsecret.yaml (ExternalSecret) # SKIP
+ok 166 - lighthouse/templates/keeper-deployment.yaml (Deployment)
+ok 167 - lighthouse/templates/keeper-rb.yaml (RoleBinding)
+ok 168 - lighthouse/templates/keeper-role.yaml (Role)
+ok 169 - lighthouse/templates/keeper-sa.yaml (ServiceAccount)
+ok 170 - lighthouse/templates/keeper-service.yaml (Service)
+ok 171 - lighthouse/templates/oauthsecret.yaml (ExternalSecret) # SKIP
+ok 172 - lighthouse/templates/tekton-controller-deployment.yaml (Deployment)
+ok 173 - lighthouse/templates/tekton-controller-rb.yaml (RoleBinding)
+ok 174 - lighthouse/templates/tekton-controller-role.yaml (Role)
+ok 175 - lighthouse/templates/tekton-controller-sa.yaml (ServiceAccount)
+ok 176 - lighthouse/templates/tekton-controller-service.yaml (Service)
+ok 177 - lighthouse/templates/webhooks-deployment.yaml (Deployment)
+ok 178 - lighthouse/templates/webhooks-rb.yaml (RoleBinding)
+ok 179 - lighthouse/templates/webhooks-role.yaml (Role)
+ok 180 - lighthouse/templates/webhooks-sa.yaml (ServiceAccount)
+ok 181 - namespaces/jx/lighthouse-config/config-cm.yaml (ConfigMap)
+ok 182 - namespaces/jx/lighthouse-config/install-config-cm.yaml (ConfigMap)
+not ok 183 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - tasks: Additional property tasks is not allowed
+not ok 184 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 185 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 186 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 187 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 188 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 189 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 190 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 191 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 192 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 193 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 194 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 195 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 196 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 197 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - default: Additional property default is not allowed
+not ok 198 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 199 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 200 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 201 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 202 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 203 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 204 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - default: Additional property default is not allowed
+not ok 205 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 206 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 207 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 208 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - default: Additional property default is not allowed
+not ok 209 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 210 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 211 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 212 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 213 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - default: Additional property default is not allowed
+not ok 214 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 215 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 216 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 217 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 218 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 219 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 220 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 221 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 222 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 223 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+not ok 224 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - value: value is required
+not ok 225 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - description: Additional property description is not allowed
+not ok 226 - namespaces/jx/lighthouse-config/jx-meta-pipeline.yaml (Pipeline) - type: Additional property type is not allowed
+ok 227 - namespaces/jx/lighthouse-config/plugins-cm.yaml (ConfigMap)
+ok 228 - nexus/templates/config.yaml (ConfigMap)
+ok 229 - nexus/templates/deployment.yaml (Deployment)
+ok 230 - nexus/templates/pvc.yaml (PersistentVolumeClaim)
+ok 231 - nexus/templates/secret.yaml (ExternalSecret) # SKIP
+ok 232 - nexus/templates/service.yaml (Service)
+not ok 233 - namespaces/jx/source-repositories/jstrachan-gallery.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 234 - namespaces/jx/source-repositories/jstrachan-go-chaos.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 235 - namespaces/jx/source-repositories/jstrachan-jx-demo-gke2-prod.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 236 - namespaces/jx/source-repositories/jstrachan-node-example.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 237 - namespaces/jx/source-repositories/jstrachan-nodey534.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 238 - namespaces/jx/source-repositories/jstrachan-nodey536.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 239 - namespaces/jx/source-repositories/jstrachan-nodey545.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 240 - namespaces/jx/source-repositories/jstrachan-nodey546.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 241 - namespaces/jx/source-repositories/jstrachan-nodey553.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 242 - namespaces/jx/source-repositories/jstrachan-nodey554.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 243 - namespaces/jx/source-repositories/jstrachan-nodey560.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 244 - namespaces/jx/source-repositories/jstrachan-rust-demo3.yaml (SourceRepository) - metadata: Additional property metadata is not allowed
+not ok 245 - namespaces/jx-observability/chart-crds/grafana-dashboard.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 246 - namespaces/jx-observability/chart-crds/grafana-dashboard.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 247 - namespaces/jx-observability/chart-crds/grafana-dashboard.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 248 - namespaces/jx-observability/chart-crds/grafana.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 249 - namespaces/jx-observability/chart-crds/grafana.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 250 - namespaces/jx-observability/chart-crds/grafana.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 251 - namespaces/jx-observability/chart-crds/loki.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 252 - namespaces/jx-observability/chart-crds/loki.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 253 - namespaces/jx-observability/chart-crds/loki.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 254 - namespaces/jx-observability/chart-crds/prometheus.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 255 - namespaces/jx-observability/chart-crds/prometheus.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 256 - namespaces/jx-observability/chart-crds/prometheus.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 257 - namespaces/jx-observability/chart-crds/promtail.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 258 - namespaces/jx-observability/chart-crds/promtail.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 259 - namespaces/jx-observability/chart-crds/promtail.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 260 - namespaces/jx-observability/chart-crds/tempo.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 261 - namespaces/jx-observability/chart-crds/tempo.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 262 - namespaces/jx-observability/chart-crds/tempo.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 263 - grafana/templates/configmap.yaml (ConfigMap)
+ok 264 - grafana/templates/configmap-dashboard-provider.yaml (ConfigMap)
+ok 265 - grafana/templates/deployment.yaml (Deployment)
+ok 266 - grafana/templates/ingress.yaml (Ingress)
+ok 267 - grafana/templates/pvc.yaml (PersistentVolumeClaim)
+ok 268 - grafana/templates/podsecuritypolicy.yaml (PodSecurityPolicy)
+ok 269 - grafana/templates/rolebinding.yaml (RoleBinding)
+ok 270 - grafana/templates/role.yaml (Role)
+ok 271 - grafana/templates/serviceaccount.yaml (ServiceAccount)
+ok 272 - grafana/templates/secret.yaml (ExternalSecret) # SKIP
+ok 273 - grafana/templates/service.yaml (Service)
+ok 274 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 275 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 276 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 277 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 278 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 279 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 280 - grafana-dashboard/templates/configmap.yaml (ConfigMap)
+ok 281 - loki/templates/service-headless.yaml (Service)
+ok 282 - loki/templates/podsecuritypolicy.yaml (PodSecurityPolicy)
+ok 283 - loki/templates/rolebinding.yaml (RoleBinding)
+ok 284 - loki/templates/role.yaml (Role)
+ok 285 - loki/templates/serviceaccount.yaml (ServiceAccount)
+ok 286 - loki/templates/secret.yaml (ExternalSecret) # SKIP
+ok 287 - loki/templates/statefulset.yaml (StatefulSet)
+ok 288 - loki/templates/service.yaml (Service)
+ok 289 - prometheus/charts/kube-state-metrics/templates/deployment.yaml (Deployment)
+ok 290 - prometheus/charts/kube-state-metrics/templates/serviceaccount.yaml (ServiceAccount)
+ok 291 - prometheus/charts/kube-state-metrics/templates/service.yaml (Service)
+ok 292 - prometheus/templates/alertmanager/cm.yaml (ConfigMap)
+ok 293 - prometheus/templates/alertmanager/deploy.yaml (Deployment)
+ok 294 - prometheus/templates/alertmanager/pvc.yaml (PersistentVolumeClaim)
+ok 295 - prometheus/templates/alertmanager/serviceaccount.yaml (ServiceAccount)
+ok 296 - prometheus/templates/alertmanager/service.yaml (Service)
+ok 297 - prometheus/templates/node-exporter/daemonset.yaml (DaemonSet)
+ok 298 - prometheus/templates/node-exporter/serviceaccount.yaml (ServiceAccount)
+ok 299 - prometheus/templates/node-exporter/svc.yaml (Service)
+ok 300 - prometheus/templates/server/cm.yaml (ConfigMap)
+ok 301 - prometheus/templates/server/deploy.yaml (Deployment)
+ok 302 - prometheus/templates/server/pvc.yaml (PersistentVolumeClaim)
+ok 303 - prometheus/templates/server/serviceaccount.yaml (ServiceAccount)
+ok 304 - prometheus/templates/server/service.yaml (Service)
+ok 305 - promtail/templates/daemonset.yaml (DaemonSet)
+ok 306 - promtail/templates/serviceaccount.yaml (ServiceAccount)
+ok 307 - promtail/templates/secret.yaml (ExternalSecret) # SKIP
+ok 308 - tempo/templates/configmap-tempo.yaml (ConfigMap)
+ok 309 - tempo/templates/configmap-tempo-query.yaml (ConfigMap)
+ok 310 - tempo/templates/serviceaccount.yaml (ServiceAccount)
+ok 311 - tempo/templates/statefulset.yaml (StatefulSet)
+ok 312 - tempo/templates/service.yaml (Service)
+not ok 313 - namespaces/jx-staging/chart-crds/node-example.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 314 - namespaces/jx-staging/chart-crds/node-example.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 315 - namespaces/jx-staging/chart-crds/node-example.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 316 - jxboot-helmfile-resources/templates/tekton-container-registry-auth-secret.yaml (ExternalSecret) # SKIP
+ok 317 - node-example/templates/ingress.yaml (Ingress)
+ok 318 - node-example/templates/deployment.yaml (Deployment)
+ok 319 - node-example/templates/sa.yaml (ServiceAccount)
+ok 320 - node-example/templates/service.yaml (Service)
+ok 321 - jxboot-helmfile-resources/templates/tekton-container-registry-auth-secret.yaml (ExternalSecret) # SKIP
+not ok 322 - namespaces/myjenkinsf/chart-crds/jenkins-resources.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 323 - namespaces/myjenkinsf/chart-crds/jenkins-resources.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 324 - namespaces/myjenkinsf/chart-crds/jenkins-resources.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 325 - namespaces/myjenkinsf/chart-crds/jenkins.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 326 - namespaces/myjenkinsf/chart-crds/jenkins.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 327 - namespaces/myjenkinsf/chart-crds/jenkins.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 328 - jenkins/templates/jenkins-agent-svc.yaml (Service)
+ok 329 - jenkins/templates/rbac.yaml (Role)
+ok 330 - jenkins/templates/config.yaml (ConfigMap)
+ok 331 - jenkins/templates/jenkins-controller-ingress.yaml (Ingress)
+ok 332 - jenkins/templates/jcasc-config.yaml (ConfigMap)
+ok 333 - jenkins/templates/home-pvc.yaml (PersistentVolumeClaim)
+ok 334 - jenkins/templates/rbac.yaml (RoleBinding)
+ok 335 - jenkins/templates/rbac.yaml (Role)
+ok 336 - jenkins/templates/service-account.yaml (ServiceAccount)
+ok 337 - jenkins/templates/rbac.yaml (RoleBinding)
+ok 338 - jenkins/templates/rbac.yaml (Role)
+ok 339 - jenkins/templates/secret.yaml (ExternalSecret) # SKIP
+ok 340 - jenkins/templates/jenkins-controller-statefulset.yaml (StatefulSet)
+ok 341 - jenkins/templates/jenkins-controller-svc.yaml (Service)
+ok 342 - jenkins/templates/rbac.yaml (RoleBinding)
+ok 343 - jenkins/templates/tests/test-config.yaml (ConfigMap)
+ok 344 - jenkins/templates/tests/jenkins-test.yaml (Pod)
+ok 345 - jenkins-resources/templates/maven-settings-secret.yaml (ExternalSecret) # SKIP
+ok 346 - jenkins-resources/templates/pipelineactivity-role-binding.yaml (RoleBinding)
+ok 347 - jenkins-resources/templates/pipelineactivity-role.yaml (Role)
+not ok 348 - jenkins-resources/templates/release.yaml (Release) - metadata: Additional property metadata is not allowed
+ok 349 - jenkins-resources/templates/tekton-rolebinding.yaml (RoleBinding)
+ok 350 - jenkins-resources/templates/tekton-role.yaml (Role)
+ok 351 - jenkins-resources/templates/tekton-container-registry-auth-secret.yaml (ExternalSecret) # SKIP
+ok 352 - jenkins-resources/templates/tekton-git-secret.yaml (ExternalSecret) # SKIP
+not ok 353 - namespaces/nginx/chart-crds/ingress-nginx.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 354 - namespaces/nginx/chart-crds/ingress-nginx.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 355 - namespaces/nginx/chart-crds/ingress-nginx.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 356 - ingress-nginx/templates/controller-service-webhook.yaml (Service)
+ok 357 - ingress-nginx/templates/controller-configmap.yaml (ConfigMap)
+ok 358 - ingress-nginx/templates/controller-deployment.yaml (Deployment)
+ok 359 - ingress-nginx/templates/controller-service-metrics.yaml (Service)
+ok 360 - ingress-nginx/templates/controller-poddisruptionbudget.yaml (PodDisruptionBudget)
+ok 361 - ingress-nginx/templates/controller-service.yaml (Service)
+ok 362 - ingress-nginx/templates/controller-rolebinding.yaml (RoleBinding)
+ok 363 - ingress-nginx/templates/controller-role.yaml (Role)
+ok 364 - ingress-nginx/templates/controller-serviceaccount.yaml (ServiceAccount)
+ok 365 - ingress-nginx/templates/admission-webhooks/validating-webhook.yaml (ValidatingWebhookConfiguration)
+ok 366 - ingress-nginx/templates/admission-webhooks/job-patch/job-createSecret.yaml (Job)
+ok 367 - ingress-nginx/templates/admission-webhooks/job-patch/job-patchWebhook.yaml (Job)
+ok 368 - ingress-nginx/templates/admission-webhooks/job-patch/rolebinding.yaml (RoleBinding)
+ok 369 - ingress-nginx/templates/admission-webhooks/job-patch/role.yaml (Role)
+ok 370 - ingress-nginx/templates/admission-webhooks/job-patch/serviceaccount.yaml (ServiceAccount)
+not ok 371 - namespaces/secret-infra/chart-crds/kubernetes-external-secrets.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 372 - namespaces/secret-infra/chart-crds/kubernetes-external-secrets.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 373 - namespaces/secret-infra/chart-crds/kubernetes-external-secrets.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+not ok 374 - namespaces/secret-infra/chart-crds/pusher-wave.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 375 - namespaces/secret-infra/chart-crds/pusher-wave.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 376 - namespaces/secret-infra/chart-crds/pusher-wave.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 377 - kubernetes-external-secrets/templates/deployment.yaml (Deployment)
+ok 378 - kubernetes-external-secrets/templates/serviceaccount.yaml (ServiceAccount)
+ok 379 - kubernetes-external-secrets/templates/service.yaml (Service)
+not ok 380 - pusher-wave/templates/release.yaml (Release) - metadata: Additional property metadata is not allowed
+ok 381 - pusher-wave/templates/deployment.yaml (Deployment)
+ok 382 - pusher-wave/templates/serviceaccount.yaml (ServiceAccount)
+not ok 383 - namespaces/tekton-pipelines/chart-crds/tekton-pipeline.yaml (Chart) - metadata: Additional property metadata is not allowed
+not ok 384 - namespaces/tekton-pipelines/chart-crds/tekton-pipeline.yaml (Chart) - status.firstDeployed: Invalid type. Expected: object, given: string
+not ok 385 - namespaces/tekton-pipelines/chart-crds/tekton-pipeline.yaml (Chart) - status.lastDeployed: Invalid type. Expected: object, given: string
+ok 386 - tekton-pipeline/templates/config-artifact-bucket-cm.yaml (ConfigMap)
+ok 387 - tekton-pipeline/templates/config-artifact-pvc-cm.yaml (ConfigMap)
+ok 388 - tekton-pipeline/templates/config-defaults-cm.yaml (ConfigMap)
+ok 389 - tekton-pipeline/templates/config-leader-election-cm.yaml (ConfigMap)
+ok 390 - tekton-pipeline/templates/config-logging-cm.yaml (ConfigMap)
+ok 391 - tekton-pipeline/templates/config-observability-cm.yaml (ConfigMap)
+ok 392 - tekton-pipeline/templates/config-registry-cert-cm.yaml (ConfigMap)
+ok 393 - tekton-pipeline/templates/config.webhook.pipeline.tekton.dev-valwebhookcfg.yaml (ValidatingWebhookConfiguration)
+ok 394 - tekton-pipeline/templates/feature-flags-cm.yaml (ConfigMap)
+ok 395 - tekton-pipeline/templates/tekton-bot-sa.yaml (ServiceAccount)
+ok 396 - tekton-pipeline/templates/tekton-pipelines-controller-deploy.yaml (Deployment)
+ok 397 - tekton-pipeline/templates/tekton-pipelines-controller-leaderelection-rb.yaml (RoleBinding)
+ok 398 - tekton-pipeline/templates/tekton-pipelines-controller-rb.yaml (RoleBinding)
+ok 399 - tekton-pipeline/templates/tekton-pipelines-controller-role.yaml (Role)
+ok 400 - tekton-pipeline/templates/tekton-pipelines-controller-sa.yaml (ServiceAccount)
+ok 401 - tekton-pipeline/templates/tekton-pipelines-controller-svc.yaml (Service)
+ok 402 - tekton-pipeline/templates/tekton-pipelines-leader-election-role.yaml (Role)
+ok 403 - tekton-pipeline/templates/tekton-pipelines-podsecuritypolicy.yaml (PodSecurityPolicy)
+ok 404 - tekton-pipeline/templates/tekton-pipelines-webhook-deploy.yaml (Deployment)
+ok 405 - tekton-pipeline/templates/tekton-pipelines-webhook-horizontalpodautoscaler.yaml (HorizontalPodAutoscaler)
+ok 406 - tekton-pipeline/templates/tekton-pipelines-webhook-leaderelection-rb.yaml (RoleBinding)
+ok 407 - tekton-pipeline/templates/tekton-pipelines-webhook-rb.yaml (RoleBinding)
+ok 408 - tekton-pipeline/templates/tekton-pipelines-webhook-role.yaml (Role)
+ok 409 - tekton-pipeline/templates/tekton-pipelines-webhook-sa.yaml (ServiceAccount)
+ok 410 - tekton-pipeline/templates/tekton-pipelines-webhook-svc.yaml (Service)
+ok 411 - tekton-pipeline/templates/validation.webhook.pipeline.tekton.dev-valwebhookcfg.yaml (ValidatingWebhookConfiguration)
+ok 412 - tekton-pipeline/templates/webhook-certs-secret.yaml (Secret)
+ok 413 - tekton-pipeline/templates/webhook.pipeline.tekton.dev-mutwebhookcfg.yaml (MutatingWebhookConfiguration)
