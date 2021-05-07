@@ -13,7 +13,7 @@ import (
 func Main() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   rootcmd.TopLevelCommand,
-		Short: "commands for stashing results",
+		Short: "commands for processing TAP (Test Anything Protocol) files",
 		Run: func(cmd *cobra.Command, args []string) {
 			err := cmd.Help()
 			if err != nil {
